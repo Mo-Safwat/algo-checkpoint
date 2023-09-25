@@ -1,0 +1,42 @@
+ALGORITHM SentenceAnalysis;
+VAR
+    sentence: String;
+    length: Integer;
+    wordCount: Integer;
+    vowelCount: Integer;
+    i: Integer;
+    c: Char;
+BEGIN
+    // Read the sentence from the user
+    WriteLn('Enter a sentence (ending with a period):');
+    ReadLn(sentence);
+
+    // Initialize counters
+    length := 0;
+    wordCount := 0;
+    vowelCount := 0;
+
+    // Process each character in the sentence
+    FOR i := 1 TO Length(sentence) DO
+    BEGIN
+        c := sentence[i];
+        length := length + 1;
+
+        // Check if the character is a space
+        IF c = ' ' THEN
+        BEGIN
+            wordCount := wordCount + 1;
+        END
+
+        // Check if the character is a vowel (case-insensitive)
+        ELSE IF UpCase(c) IN ['A', 'E', 'I', 'O', 'U'] THEN
+        BEGIN
+            vowelCount := vowelCount + 1;
+        END;
+    END;
+
+    // Output the results
+    WriteLn('Length of the sentence:"', length);
+    WriteLn('Number of words:', wordCount + 1); // Add 1 to account for the last word after the period
+    WriteLn('Number of vowels:', vowelCount);
+END.
